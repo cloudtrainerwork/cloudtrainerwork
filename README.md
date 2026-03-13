@@ -1,194 +1,108 @@
+# Brian Nielsen
 
+**Field CTO · AI Architect · Execution Systems**
+Dallas–Fort Worth, TX
 
-# LiquidMetal Multi-Agent App Generator
+I design systems where AI moves from demo to production. My work sits at the intersection of agent orchestration, delivery architecture, and developer ergonomics — building the scaffolding that lets teams ship AI systems with operational discipline from the start.
 
-Generate production-ready multi-agent applications with structured orchestration, model lifecycle awareness, and deployment scaffolding.
-
-LiquidMetal is a CLI-based reference implementation exploring how multi-agent systems should be designed for real-world deployment. It focuses on modular agent architecture, event-driven workflows, evaluation hooks, and schema evolution without system downtime.
-
-This repository reflects architectural thinking around how AI agents move from prototype to production.
 
 ---
 
-## Why This Exists
+## Projects
 
-Most AI agent systems fail when transitioning from demo to production because they lack:
+### FORGE Method — Execution Architecture for AI-Augmented Delivery
+> *Graph-native project management built for the age of AI coding agents*
 
-* Structured evaluation loops
-* Observability and traceability
-* Safe schema and model evolution
-* Clear separation of orchestration and business logic
+**[Documentation →](https://cloudtrainerwork.github.io/Forge/)**
 
-LiquidMetal was built to explore solutions to those problems through:
+**v1.0 shipped February 25, 2026.** v1.1 (specification layer + GSD export engine) in milestone closeout.
 
-* Modular agent scaffolding
-* Event-driven orchestration
-* Model dependency awareness
-* Zero-downtime component swapping
-* Deployment-first architecture
+Every engineering leader maintains a parallel system — a mind map, spreadsheet, or Slack thread — alongside their Agile tool to track what's actually happening. That shadow system is the real status infrastructure. The Agile tool is theater.
 
-It is not a commercial product. It is an architectural experiment in production agent design.
+FORGE replaces the **data model** of Agile tooling while preserving the intent. Work is modeled as a directed graph with typed edges. Readiness is measured across six dimensions, not inferred from sprint ritual. Release confidence is computed from actual state — not reconstructed from ticket counts.
 
----
+**The five practices:**
 
-## Core Capabilities
+| Practice | Replaces | Core Idea |
+|---|---|---|
+| Graph-Based Work Modeling | Flat backlogs | Work as nodes in a directed graph with typed edges |
+| Multi-Dimensional Readiness | Single status fields | Six-axis state: Requirements, Design, FE, BE, Integration, Test |
+| Shovel-Ready Specifications | Vague acceptance criteria | Structured completeness gates before sprint entry |
+| Sprint Execution Windows | Grooming + negotiation | Pull from ready queue; overhead is first-class budget |
+| Closed-Loop Reconciliation | Manual status updates | Code commits flow back to graph via CI pipeline |
 
-### Agent Scaffolding
+**Why this matters for AI-powered development:**
+AI coding agents (Cursor, Claude Code, GitHub Copilot, Windsurf) are mainstream. They also operate in a context vacuum — no tool connects the work graph to the development context. FORGE's Shovel-Ready Specs become the structured input contract for these tools. The closed-loop reconciliation system maps code completions back to graph readiness automatically. The CI pipeline is the reconciliation agent. Developer workflow is unchanged.
 
-* Generates modular multi-agent applications
-* Separates orchestration, business logic, and configuration
-* Containerized agent services with Docker support
-* Event-driven communication model
+**Architecture:** Neo4j + PostgreSQL hybrid · GSD / BMAD / Claude Code export engine · GitHub Action for reconciliation · VS Code Extension · Manifest Schema
 
-### Dynamic Model Awareness
+**In development:** `forge-map` — reverse-engineer any existing repo into a FORGE graph in under 10 minutes. Point it at a codebase, get nodes, edges, and dependency structure automatically imported into your project. Solves cold-start adoption for teams that already have a codebase.
 
-Agents automatically adapt to model and schema changes without system restarts.
+**Submitted to present at:** Agile Alliance — Future of Work & Careers track (*"Your Agile Tools Can't Survive AI Agents"*)
 
-Capabilities include:
-
-* Model version tracking
-* Dependency mapping between models and agents
-* Change notifications via internal event system
-* Safe validation before applying changes
-* Rollback support
-
-This enables real-time iteration without downtime.
+> Raise your hand if you maintain a spreadsheet, mind map, or Slack thread alongside your Agile tool to track what's actually happening.
+>
+> That parallel system is the real status infrastructure. Your Agile tool is the theater.
+>
+> This session makes the case that Jira, Linear, and every mainstream project management tool share the same fatal architectural flaw: they model work as flat lists with single-status fields. Meanwhile, AI coding agents — Cursor, Claude Code, GitHub Copilot, Windsurf — are mainstream and accelerating. They generate code at unprecedented speed. And they operate in a complete context vacuum.
+>
+> The collision of these two facts is where modern delivery breaks down.
+>
+> This talk introduces Execution Architecture: a graph-native approach to modeling work, measuring readiness across six dimensions, and creating a closed-loop system where code commits flow back to the delivery graph automatically. Live demos. Real data. A working system — not a framework.
 
 ---
 
-## Evaluation and Observability
+### Multi-Agent Application Platform with LiquidMetal 
+> *CLI-driven scaffolding for production-grade agentic systems*
 
-LiquidMetal includes structured support for:
+Most AI agent systems fail when transitioning from demo to production — they lack structured evaluation loops, observability, safe schema evolution, and clear separation between orchestration and business logic.
 
-* Agent-level logging
-* Model version tagging
-* Change event history
-* Evaluation hooks for LLM output scoring
-* Correlation between agent executions
+Multi-Agent Application Platform with LiquidMetal is an architectural experiment in solving those problems from the ground up:
 
-The goal is to move beyond demo agents toward traceable, inspectable systems suitable for enterprise use.
-
----
-
-## CLI Overview
-
-### Generate an Application
+- **Agent scaffolding** — generates modular multi-agent applications with containerized services and event-driven communication
+- **Dynamic model awareness** — agents adapt to model and schema changes without restarts; full dependency mapping and rollback support
+- **Evaluation & observability** — agent-level logging, model version tagging, LLM output scoring, correlation across agent executions
+- **Zero-downtime component swapping** — hot-swap agents and models safely in running systems
+- **Deployment-first** — Kubernetes-ready, Docker Compose for local dev, environment-based configuration separation
 
 ```bash
+# Generate a production-ready multi-agent application
 multiagent new my-system --template rfp
-```
 
-Or from natural language:
-
-```bash
+# Or from natural language
 multiagent new "build a CRM with lead scoring"
-```
 
-### Interactive Model Editing
-
-```bash
+# Interactive schema editor with live agent impact analysis
 multiagent model Customer
 ```
 
-Features:
+**Templates:** RFP evaluation workflow · CRM with lead scoring · Generic multi-agent starter · ERP · Marketplace
 
-* Add, modify, or remove fields
-* See affected agents
-* Validate schema changes
-* Deploy updates with agent notifications
-* Watch model changes in real time
+**Stack:** TypeScript / Node.js · Docker · Kubernetes · Event-driven orchestration · RAG pipelines
 
 ---
 
-## Architecture Overview
+### ⚡ Solana Flash Loan Arbitrage Bot
+> *High-performance multi-DEX arbitrage system with a custom Rust route optimizer*
 
-A generated application follows this structure:
+Built to explore the performance boundary between Python orchestration and Rust's native execution characteristics. The system detects and executes arbitrage opportunities across 6 Solana DEXes using a custom flash loan program deployed on mainnet.
 
-```
-my-app/
-├── raindrop/
-│   ├── models/
-│   ├── embeddings/
-│   ├── pipelines/
-│   └── storage/
-├── agents/
-│   └── AgentName/
-│       ├── handler.ts
-│       ├── Dockerfile
-│       └── config.yaml
-├── deploy/
-├── tests/
-├── docker-compose.yaml
-└── README.md
-```
+**The core engineering problem:** route generation is a tight computational loop — evaluating thousands of potential arbitrage paths per second. Python's GIL makes this impractical at scale. Solution: a Rust engine exposed to Python via PyO3/Maturin.
 
-The architecture is designed around:
+| Component | Python | Rust | Delta |
+|---|---|---|---|
+| Route generation | ~100/sec | 239,732/sec | 2,397x |
+| Memory usage | Baseline | Zero-copy structures | 10x reduction |
 
-* Event-driven workflows
-* Containerized agents
-* Clear agent responsibility boundaries
-* Schema-driven system behavior
+**Key engineering decisions:**
+- Atomic flash loan execution — transaction completes profitably or reverts entirely; no partial positions, no stranded capital
+- 5-wallet MEV rotation — prevents front-running by mempool searchers
+- Configurable circuit breakers — daily loss limits and consecutive failure stops
+- Full observability — opportunity logging with rejection reason tracking, wallet balance monitoring, performance analytics
 
----
+**DEX integrations:** Jupiter · Orca · Raydium · Phoenix · Meteora · Lifinity
 
-## Production Constraints Considered
+**Stack:** Python · Rust (PyO3/Maturin) · Solana · Anchor · PostgreSQL · GitHub Actions
 
-The design explicitly addresses:
-
-* Idempotent agent execution
-* Retry and backoff handling
-* Safe model evolution
-* Zero-downtime component swapping
-* Rollback strategies
-* Environment-based configuration separation
-
----
-
-## Template Library
-
-Currently implemented templates:
-
-* RFP evaluation workflow
-* CRM with lead scoring
-* Generic multi-agent starter
-
-Planned templates explore ERP, auction systems, e-commerce, and marketplace workflows.
-
-The templates exist to demonstrate how structured agent systems can map to real business processes.
-
----
-
-## Deployment
-
-Supports:
-
-* Local development with Docker Compose
-* Kubernetes-ready deployment
-* Infrastructure provider abstraction
-* Environment-based configuration
-
-The deployment layer is intentionally separated from agent logic to preserve portability.
-
----
-
-## Strategic Context
-
-LiquidMetal represents my thinking around:
-
-* Production-ready agent lifecycle management
-* Enterprise-grade architecture patterns
-* Evaluation-aware system design
-* Technical GTM readiness for AI systems
-* Developer ergonomics for multi-agent platforms
-
-It is a demonstration of how agent systems can be scaffolded with operational discipline from the beginning rather than retrofitted later.
-
----
-
-## Status
-
-This repository is an active architectural exploration and is not intended as a commercial platform.
-
-Contributions and architectural discussion are welcome.
-
+> Research and educational project. Flash loan arbitrage involves substantial financial risk.
 
