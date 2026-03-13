@@ -52,12 +52,12 @@ AI coding agents (Cursor, Claude Code, GitHub Copilot, Windsurf) are mainstream.
 
 ---
 
-### Multi-Agent Application Platform with LiquidMetal 
+### Kroniqa - Multi-Agent Application Platform with LiquidMetal 
 > *CLI-driven scaffolding for production-grade agentic systems*
 
 Most AI agent systems fail when transitioning from demo to production — they lack structured evaluation loops, observability, safe schema evolution, and clear separation between orchestration and business logic.
 
-Multi-Agent Application Platform with LiquidMetal is an architectural experiment in solving those problems from the ground up:
+Kroniqa is an architectural experiment in solving those problems from the ground up:
 
 - **Agent scaffolding** — generates modular multi-agent applications with containerized services and event-driven communication
 - **Dynamic model awareness** — agents adapt to model and schema changes without restarts; full dependency mapping and rollback support
@@ -76,7 +76,7 @@ multiagent new "build a CRM with lead scoring"
 multiagent model Customer
 ```
 
-**Templates:** RFP evaluation workflow · CRM with lead scoring · Generic multi-agent starter · ERP · Marketplace
+**Templates:** RFP evaluation workflow · CRM with lead scoring · Content Generation · Generic multi-agent starter · ERP · Marketplace
 
 **Stack:** TypeScript / Node.js · Docker · Kubernetes · Event-driven orchestration · RAG pipelines
 
