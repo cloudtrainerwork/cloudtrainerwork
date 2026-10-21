@@ -5,10 +5,67 @@ Dallas–Fort Worth, TX
 
 I design systems where AI moves from demo to production. My work sits at the intersection of agent orchestration, delivery architecture, and developer ergonomics — building the scaffolding that lets teams ship AI systems with operational discipline from the start.
 
+Lately that means building the infrastructure *around* AI agents, not just agents themselves: systems that **generate** agent applications, **orchestrate** agent work, **govern** agent fleets, and **ship** real product on top.
 
 ---
 
 ## Projects
+
+### Agency Pipeline — Multi-Agent Execution Command Center
+> *A plain request → the right agents → reviewed, tracked, and done on a board*
+
+An executive command center for a roster of specialist AI agents. You type a plain-language request; a **Prompt Composer** routes it to the smallest sufficient set of registered agents — parallel **builders** plus a **judge**, with a **Project Manager** agent always injected — runs them on Claude with **live progress over WebSocket**, runs a judge pass, then tracks the whole job card-by-card on a self-hosted **Planka** board. Every run writes a resumable `STATE.md` (goal, decisions, task status, "where to pick up") so work survives across sessions.
+
+**Architecture:** Piral micro-frontend shell hosting independent pilets · Fastify + SQLite orchestration service · self-hosted Planka board · Claude agents · WebSocket streaming
+
+**Stack:** TypeScript · Piral · Fastify · SQLite · Planka · Claude
+
+---
+
+### AgentOS — Enterprise Control Plane for AI Agent Fleets
+> *Governance + FinOps for AI labor — the operating layer around agent employees*
+
+OpenClaw and Hermes help agents *do* work. AgentOS helps an organization **govern, provision, fund, monitor, and control** agents doing work — the HR system, finance ledger, access-control layer, and service catalog around a fleet of agent "employees."
+
+- **Org-scoped resources** — business units, roles, ownership links, approval gates
+- **Model-tier policy & access control** — what each agent can touch and which tier it runs on
+- **FinOps / chargeback** — attribute agent cost to the business unit that pays for it
+- **Operator console** — org tree, rollout, approval queue, failures, and cost in one place
+- **Distributed runtime** — a Node control plane + operator console with a **Rust** runtime worker over Postgres/Redis, containerized with Docker
+
+**Stack:** TypeScript · Rust · Node.js · PostgreSQL · Redis · Docker · pnpm monorepo
+
+---
+
+### Kroniqa - Multi-Agent Application Platform with LiquidMetal 
+> *CLI-driven scaffolding for production-grade agentic systems*
+
+Most AI agent systems fail when transitioning from demo to production — they lack structured evaluation loops, observability, safe schema evolution, and clear separation between orchestration and business logic.
+
+Kroniqa is an architectural experiment in solving those problems from the ground up:
+
+- **Agent scaffolding** — generates modular multi-agent applications with containerized services and event-driven communication
+- **Dynamic model awareness** — agents adapt to model and schema changes without restarts; full dependency mapping and rollback support
+- **Evaluation & observability** — agent-level logging, model version tagging, LLM output scoring, correlation across agent executions
+- **Zero-downtime component swapping** — hot-swap agents and models safely in running systems
+- **Deployment-first** — Kubernetes-ready, Docker Compose for local dev, environment-based configuration separation
+
+```bash
+# Generate a production-ready multi-agent application
+multiagent new my-system --template rfp
+
+# Or from natural language
+multiagent new "build a CRM with lead scoring"
+
+# Interactive schema editor with live agent impact analysis
+multiagent model Customer
+```
+
+**Templates:** RFP evaluation workflow · CRM with lead scoring · Content Generation · Generic multi-agent starter · ERP · Marketplace
+
+**Stack:** TypeScript / Node.js · Docker · Kubernetes · Event-driven orchestration · RAG pipelines
+
+---
 
 ### FORGE Method — Execution Architecture for AI-Augmented Delivery
 > *Graph-native project management built for the age of AI coding agents*
@@ -52,33 +109,29 @@ AI coding agents (Cursor, Claude Code, GitHub Copilot, Windsurf) are mainstream.
 
 ---
 
-### Kroniqa - Multi-Agent Application Platform with LiquidMetal 
-> *CLI-driven scaffolding for production-grade agentic systems*
+### IPv4 Intelligence / Konetix — Production Multi-Tenant Platform
+> *Registry, routing, and reputation intelligence as self-service SaaS*
 
-Most AI agent systems fail when transitioning from demo to production — they lack structured evaluation loops, observability, safe schema evolution, and clear separation between orchestration and business logic.
+A production, multi-tenant SaaS platform for an IPv4 address brokerage — turning registry, routing, and reputation data into self-service customer tools and AI-driven sales automation.
 
-Kroniqa is an architectural experiment in solving those problems from the ground up:
+- **IPv4 estate resolution** — resolves an org's owned prefixes, utilization, and value from RDAP/RIR data
+- **Route Assurance** — validates prefixes against BGP, RPKI, and IRR route objects and surfaces exactly what to clean up
+- **Blacklist reputation scanning** — scans owned space against 100+ blocklist providers, graded and reported
+- **Executive estate dashboard** — unifies all three systems per tenant, with per-prefix drill-down
+- **Scan engine** — chunked and horizontally scaled, with a BigQuery data firehose and self-owned /24 egress, sized to enumerate up to a /16 with zero data truncation
+- **AI email agent** — human-in-the-loop CRM agent that enriches inbound leads with live lookups, drafts replies from an editable SOP matrix, and learns from reviewer decisions
+- **Platform** — multi-tenant monetization (Stripe), client/internal/admin RBAC, SOC 2 Type 1 (Security) posture, and several Cloud Run microservice gateways
 
-- **Agent scaffolding** — generates modular multi-agent applications with containerized services and event-driven communication
-- **Dynamic model awareness** — agents adapt to model and schema changes without restarts; full dependency mapping and rollback support
-- **Evaluation & observability** — agent-level logging, model version tagging, LLM output scoring, correlation across agent executions
-- **Zero-downtime component swapping** — hot-swap agents and models safely in running systems
-- **Deployment-first** — Kubernetes-ready, Docker Compose for local dev, environment-based configuration separation
+**Stack:** TypeScript · Piral micro-frontends · Node/Express · Google Cloud (Cloud Run, Cloud SQL/Postgres, BigQuery, GCS, Secret Manager, Load Balancing) · Clerk · Stripe · BGP / RPKI / IRR / RDAP
 
-```bash
-# Generate a production-ready multi-agent application
-multiagent new my-system --template rfp
+---
 
-# Or from natural language
-multiagent new "build a CRM with lead scoring"
+### ShipRight Portal — Production-Readiness Planner & Portal
+> *Define what "ready to ship" means, then plan and track it*
 
-# Interactive schema editor with live agent impact analysis
-multiagent model Customer
-```
+A Next.js production-readiness planner and signed-in portal — analyzer, scorecard, cost model, and export, with a Blueprints / Add-ons / Wallet workspace — built on a pure, testable domain analyzer behind a clean data seam.
 
-**Templates:** RFP evaluation workflow · CRM with lead scoring · Content Generation · Generic multi-agent starter · ERP · Marketplace
-
-**Stack:** TypeScript / Node.js · Docker · Kubernetes · Event-driven orchestration · RAG pipelines
+**Stack:** Next.js (App Router) · Supabase (auth + data, Google OAuth) · Stripe · Cloudflare (edge + Worker)
 
 ---
 
@@ -105,4 +158,3 @@ Built to explore the performance boundary between Python orchestration and Rust'
 **Stack:** Python · Rust (PyO3/Maturin) · Solana · Anchor · PostgreSQL · GitHub Actions
 
 > Research and educational project. Flash loan arbitrage involves substantial financial risk.
-
