@@ -11,14 +11,24 @@ Lately that means building the infrastructure *around* AI agents, not just agent
 
 ## Projects
 
-### Agency Pipeline — Multi-Agent Execution Command Center
-> *A plain request → the right agents → reviewed, tracked, and done on a board*
+### Agency Pipeline — Autonomous Multi-Agent Software Factory
+> *A plain-language request → a secured, production application — built, reviewed, and shipped by agents*
 
-An executive command center for a roster of specialist AI agents. You type a plain-language request; a **Prompt Composer** routes it to the smallest sufficient set of registered agents — parallel **builders** plus a **judge**, with a **Project Manager** agent always injected — runs them on Claude with **live progress over WebSocket**, runs a judge pass, then tracks the whole job card-by-card on a self-hosted **Planka** board. Every run writes a resumable `STATE.md` (goal, decisions, task status, "where to pick up") so work survives across sessions.
+An end-to-end agentic pipeline that turns a plain request into a **deployed, secured application**. A **Prompt Composer** routes the request to the smallest sufficient set of registered specialist agents — parallel **builders** plus an adversarial **judge**, with a **Project Manager** agent always injected — and drives the full lifecycle:
 
-**Architecture:** Piral micro-frontend shell hosting independent pilets · Fastify + SQLite orchestration service · self-hosted Planka board · Claude agents · WebSocket streaming
+- **Use-case synthesis** — turns the request into structured use cases / requirements the agents build against
+- **Mock UI generation** — produces interactive UI mockups for review *before* any code is written
+- **Multi-agent build + review** — builders write the app in parallel, the judge critiques, with **live progress streamed over WebSocket**
+- **Sandboxed validation** — every build runs in an **isolated sandbox**, keeping agent-generated code out of production until it passes
+- **Automated production deployment** — promotes validated apps to **production on Google Cloud**, collapsing idea-to-live from weeks to hours
+- **Board tracking + resumable memory** — the Project Manager agent opens a card on a self-hosted **Planka** board, assigns a checklist task per agent, and moves it through the workflow; a per-run `STATE.md` records goal, decisions, and "where to pick up" so work survives across sessions
+- **Full prompt-to-output traceability** at every stage
 
-**Stack:** TypeScript · Piral · Fastify · SQLite · Planka · Claude
+**Production hardening:** fronted by a **global external GCP load balancer** with managed TLS, gated behind **Clerk one-time-passcode (OTP)** authentication + SSO token hand-off; a zero-redeploy runtime module feed ships generated apps straight into the live multi-tenant platform.
+
+**Architecture:** Piral micro-frontend shell hosting independent pilets · Fastify + SQLite orchestration service · self-hosted Planka board · Claude agents · WebSocket streaming · GCP (Cloud Run, Load Balancing) · Clerk
+
+**Stack:** TypeScript · Piral · Fastify · SQLite · Planka · Claude · Google Cloud · Clerk
 
 ---
 
@@ -37,12 +47,12 @@ OpenClaw and Hermes help agents *do* work. AgentOS helps an organization **gover
 
 ---
 
-### Kroniqa - Multi-Agent Application Platform with LiquidMetal 
+### LiquidMetal — Multi-Agent Application Generator
 > *CLI-driven scaffolding for production-grade agentic systems*
 
 Most AI agent systems fail when transitioning from demo to production — they lack structured evaluation loops, observability, safe schema evolution, and clear separation between orchestration and business logic.
 
-Kroniqa is an architectural experiment in solving those problems from the ground up:
+LiquidMetal is an architectural experiment in solving those problems from the ground up:
 
 - **Agent scaffolding** — generates modular multi-agent applications with containerized services and event-driven communication
 - **Dynamic model awareness** — agents adapt to model and schema changes without restarts; full dependency mapping and rollback support
@@ -106,6 +116,24 @@ AI coding agents (Cursor, Claude Code, GitHub Copilot, Windsurf) are mainstream.
 > The collision of these two facts is where modern delivery breaks down.
 >
 > This talk introduces Execution Architecture: a graph-native approach to modeling work, measuring readiness across six dimensions, and creating a closed-loop system where code commits flow back to the delivery graph automatically. Live demos. Real data. A working system — not a framework.
+
+---
+
+### Kroniqa — Developer-First Compliance Evidence Platform
+> *Connect a change in law to code evidence, a decision, remediation, and later verification*
+
+Small software teams rarely have a repeatable way to answer: *what personal data, trackers, payment flows, or risky access patterns does this codebase contain — and which reviewed legal obligations actually apply?* Kroniqa treats scanner, legal-news, ticketing, and audit as **one connected workflow** instead of four separate products.
+
+- **Deterministic local scanner** — identifies compliance signals on your machine, emitting a source-free scan manifest and redacted previews
+- **Explicit snippet-approval boundary** — source never leaves the machine for hosted analysis without deliberate, scoped approval
+- **Versioned legal rule cards** — reviewed authoritative sources become applicability rules; the system matches them to *this* app and audience
+- **Deliberate GitHub issue flow** — confirmed gaps become review-ready issues, not noise
+- **The chronicle** — an auditable artifact linking *law change → code evidence → applicability decision → remediation → verification*
+- **Self-hosted Cadence orchestration** for the hosted analysis path
+
+**Architecture:** pnpm monorepo — scanner · analysis · api · legal-orchestrator · MCP · web dashboard · Cadence
+
+**Stack:** TypeScript · Next.js · PostgreSQL · OpenAI · MCP (Model Context Protocol) · Cadence
 
 ---
 
